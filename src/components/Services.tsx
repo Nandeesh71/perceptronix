@@ -67,14 +67,14 @@ const Services = () => {
               variants={item}
               className="group border border-border/60 rounded-sm overflow-hidden hover:border-foreground/20 transition-colors duration-400 cursor-pointer"
             >
-              <div className="relative h-40 flex items-center justify-center bg-accent/20 overflow-hidden">
+              <div className="relative h-48 flex items-center justify-center bg-accent/20 overflow-hidden">
                 <img
                   src={service.image}
                   alt={service.title}
                   loading="lazy"
-                  width={512}
-                  height={512}
-                  className="h-28 w-auto object-contain group-hover:scale-[1.03] transition-transform duration-500"
+                  width={1024}
+                  height={768}
+                  className="h-full w-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
                 />
                 <span className="absolute top-3 left-3 text-[10px] font-medium text-muted-foreground/60 tracking-widest">
                   {service.tag}
