@@ -68,7 +68,7 @@ const Navbar = () => {
                 <a
                   key={link}
                   href={`#${link.toLowerCase()}`}
-                  className="text-base text-foreground py-2"
+                  className="text-base text-background py-2"
                   onClick={() => setMobileOpen(false)}
                 >
                   {link}
