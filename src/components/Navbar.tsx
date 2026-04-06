@@ -48,7 +48,7 @@ const Navbar = () => {
         </div>
 
         <button
-          className="md:hidden text-foreground"
+          className="md:hidden text-background"
           onClick={() => setMobileOpen(!mobileOpen)}
         >
           {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
