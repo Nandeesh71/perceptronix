@@ -25,7 +25,7 @@ const Navbar = () => {
             <a
               key={link}
               href={`#${link.toLowerCase()}`}
-              className="relative text-sm font-medium text-muted-foreground transition-colors duration-300 hover:text-foreground"
+              className="relative text-sm font-medium text-background/60 transition-colors duration-300 hover:text-background"
               onMouseEnter={() => setHoveredLink(link)}
               onMouseLeave={() => setHoveredLink(null)}
             >
