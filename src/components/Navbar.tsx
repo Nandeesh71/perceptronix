@@ -76,7 +76,7 @@ const Navbar = () => {
               ))}
               <a
                 href="#contact"
-                className="mt-2 inline-flex items-center justify-center px-6 py-3 text-sm font-medium bg-foreground text-background rounded-sm"
+                className="mt-2 inline-flex items-center justify-center px-6 py-3 text-sm font-medium bg-background text-foreground rounded-sm"
                 onClick={() => setMobileOpen(false)}
               >
                 Get in touch
