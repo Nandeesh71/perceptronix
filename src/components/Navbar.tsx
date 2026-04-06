@@ -16,7 +16,7 @@ const Navbar = () => {
       className="fixed top-0 left-0 right-0 z-50 bg-foreground/95 backdrop-blur-lg"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between h-20">
-        <a href="/" className="text-xl font-semibold tracking-tight text-foreground">
+        <a href="/" className="text-xl font-semibold tracking-tight text-background">
           {"{ Perceptron;x }"}
         </a>
 
