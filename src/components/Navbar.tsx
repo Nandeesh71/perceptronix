@@ -33,7 +33,7 @@ const Navbar = () => {
               {hoveredLink === link && (
                 <motion.span
                   layoutId="nav-underline"
-                  className="absolute -bottom-1 left-0 right-0 h-px bg-foreground"
+                  className="absolute -bottom-1 left-0 right-0 h-px bg-background"
                   transition={{ type: "spring", stiffness: 400, damping: 30 }}
                 />
               )}
