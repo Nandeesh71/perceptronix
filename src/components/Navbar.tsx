@@ -41,7 +41,7 @@ const Navbar = () => {
           ))}
           <a
             href="#contact"
-            className="ml-4 inline-flex items-center px-6 py-2.5 text-sm font-medium bg-foreground text-background rounded-sm hover:opacity-90 transition-opacity duration-300"
+            className="ml-4 inline-flex items-center px-6 py-2.5 text-sm font-medium bg-background text-foreground rounded-sm hover:opacity-90 transition-opacity duration-300"
           >
             Get in touch
           </a>
