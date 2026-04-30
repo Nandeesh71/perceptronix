@@ -1,4 +1,5 @@
 import { lazy, Suspense } from "react";
+import { Helmet } from "react-helmet-async";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import ScrollProgress from "@/components/ScrollProgress";
@@ -11,6 +12,10 @@ const Footer = lazy(() => import("@/components/Footer"));
 const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <Helmet>
+        <title>PerceptroniX | AI-Powered Web & App Development</title>
+        <meta name="description" content="PerceptroniX builds cutting-edge websites, mobile apps, ML solutions and e-commerce platforms." />
+      </Helmet>
       <ScrollProgress />
       <Navbar />
       <Hero />
