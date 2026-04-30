@@ -4,12 +4,12 @@ import { useMemo } from "react";
 const FloatingParticles = () => {
   const particles = useMemo(
     () =>
-      Array.from({ length: 25 }, (_, i) => ({
+      Array.from({ length: 15 }, (_, i) => ({
         id: i,
         x: Math.random() * 100,
         y: Math.random() * 100,
         size: Math.random() * 3 + 1,
-        duration: Math.random() * 8 + 10,
+        duration: Math.random() * 8 + 12,
         delay: Math.random() * 5,
       })),
     []
@@ -20,7 +20,7 @@ const FloatingParticles = () => {
       {particles.map((p) => (
         <motion.div
           key={p.id}
-          className="absolute rounded-full bg-foreground/10"
+          className="absolute rounded-full bg-foreground/10 will-change-transform"
           style={{
             left: `${p.x}%`,
             top: `${p.y}%`,
@@ -36,7 +36,7 @@ const FloatingParticles = () => {
             duration: p.duration,
             repeat: Infinity,
             delay: p.delay,
-            ease: "easeInOut",
+            ease: "linear",
           }}
         />
       ))}
