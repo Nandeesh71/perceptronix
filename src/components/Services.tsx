@@ -22,59 +22,78 @@ const services = [
 
 const container = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.06 } },
+  show: { transition: { staggerChildren: 0.1 } },
 };
 
 const item = {
-  hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" } },
+  hidden: { opacity: 0, y: 50 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
 };
+
+const titleWords = "Our Services".split(" ");
 
 const Services = () => {
   return (
     <section id="services" className="py-28 md:py-36">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={{ hidden: {}, show: { transition: { staggerChildren: 0.1 } } }}
           className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-16"
         >
           <div>
-            <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground font-medium mb-3">
+            <motion.p
+              variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
+              className="text-xs uppercase tracking-[0.25em] text-muted-foreground font-medium mb-3"
+            >
               What we do
-            </p>
-            <h2 className="text-3xl md:text-4xl font-light text-foreground">
-              Our Services
+            </motion.p>
+            <h2 className="text-3xl md:text-4xl font-light text-foreground flex gap-3">
+              {titleWords.map((word, i) => (
+                <motion.span
+                  key={i}
+                  variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
+                >
+                  {word}
+                </motion.span>
+              ))}
             </h2>
           </div>
-          <p className="text-sm text-muted-foreground max-w-xs leading-relaxed">
+          <motion.p
+            variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
+            className="text-sm text-muted-foreground max-w-xs leading-relaxed"
+          >
             Meticulous execution from concept to delivery.
-          </p>
+          </motion.p>
         </motion.div>
 
         <motion.div
           variants={container}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, margin: "-40px" }}
+          viewport={{ once: true, margin: "-100px" }}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
         >
           {services.map((service) => (
             <motion.article
               key={service.title}
               variants={item}
-              className="group border border-border/60 rounded-sm overflow-hidden hover:border-foreground/20 transition-colors duration-400 cursor-pointer"
+              whileHover={{ y: -8, scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              className="group border border-border/60 rounded-sm overflow-hidden hover:border-foreground/20 transition-colors duration-400 cursor-pointer shimmer-card"
             >
               <div className="relative h-48 flex items-center justify-center bg-accent/20 overflow-hidden">
-                <img
+                <motion.img
                   src={service.image}
                   alt={service.title}
                   loading="lazy"
                   width={1024}
                   height={768}
-                  className="h-full w-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
+                  className="h-full w-full object-cover"
+                  whileHover={{ scale: 1.05, rotate: 2 }}
+                  transition={{ duration: 0.4 }}
                 />
                 <span className="absolute top-3 left-3 text-[10px] font-medium text-muted-foreground/60 tracking-widest">
                   {service.tag}

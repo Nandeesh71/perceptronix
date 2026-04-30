@@ -52,6 +52,10 @@
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-background text-foreground font-sans antialiased;
   }
@@ -59,4 +63,110 @@
   h1, h2, h3, h4, h5, h6 {
     @apply tracking-tight;
   }
+}
+
+/* Gradient orb animations */
+@keyframes orb-drift-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(60px, -40px) scale(1.1); }
+  66% { transform: translate(-30px, 30px) scale(0.95); }
+}
+
+@keyframes orb-drift-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-50px, 50px) scale(1.05); }
+  66% { transform: translate(40px, -20px) scale(0.9); }
+}
+
+@keyframes orb-drift-3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, 60px) scale(1.15); }
+}
+
+.orb-1 { animation: orb-drift-1 12s ease-in-out infinite; }
+.orb-2 { animation: orb-drift-2 15s ease-in-out infinite; }
+.orb-3 { animation: orb-drift-3 18s ease-in-out infinite; }
+
+/* Shimmer effect for cards */
+@keyframes shimmer-sweep {
+  0% { transform: translateX(-100%) rotate(15deg); }
+  100% { transform: translateX(200%) rotate(15deg); }
+}
+
+.shimmer-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 50%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    hsl(var(--background) / 0.15),
+    transparent
+  );
+  transform: translateX(-100%) rotate(15deg);
+  pointer-events: none;
+  transition: none;
+}
+
+.shimmer-card:hover::after {
+  animation: shimmer-sweep 0.75s ease-in-out forwards;
+}
+
+/* Link underline animation */
+.link-hover-underline {
+  position: relative;
+}
+
+.link-hover-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0%;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.3s ease;
+}
+
+.link-hover-underline:hover::after {
+  width: 100%;
+}
+
+/* Pulse glow for logo */
+@keyframes logo-pulse-glow {
+  0%, 100% { filter: drop-shadow(0 0 0px transparent); }
+  50% { filter: drop-shadow(0 0 12px hsl(var(--muted) / 0.6)); }
+}
+
+.logo-glow:hover {
+  animation: logo-pulse-glow 1.5s ease-in-out infinite;
+}
+
+/* Input focus glow */
+.input-focus-glow {
+  position: relative;
+}
+
+.input-focus-glow::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0%;
+  height: 2px;
+  background: hsl(var(--foreground));
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+.input-focus-glow:focus-within::after {
+  width: 100%;
+  left: 0%;
 }
