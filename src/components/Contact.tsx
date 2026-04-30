@@ -1,33 +1,47 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
+const stagger = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1 } },
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+};
+
 const Contact = () => {
   return (
     <section id="contact" className="py-32 border-t border-border">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          variants={stagger}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
           className="max-w-2xl"
         >
-          <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground font-medium mb-4">
+          <motion.p variants={fadeUp} className="text-xs uppercase tracking-[0.25em] text-muted-foreground font-medium mb-4">
             Start a project
-          </p>
-          <h2 className="text-3xl md:text-5xl font-light text-foreground leading-tight mb-6">
+          </motion.p>
+          <motion.h2 variants={fadeUp} className="text-3xl md:text-5xl font-light text-foreground leading-tight mb-6">
             Let's build something exceptional together.
-          </h2>
-          <p className="text-base text-muted-foreground leading-relaxed mb-10">
+          </motion.h2>
+          <motion.p variants={fadeUp} className="text-base text-muted-foreground leading-relaxed mb-10">
             Tell us about your vision. We'll bring the expertise, craft, and 
             technology to make it a reality.
-          </p>
-          <a
+          </motion.p>
+          <motion.a
+            variants={fadeUp}
             href="mailto:hello@perceptronix.com"
-            className="inline-flex items-center gap-2 px-8 py-4 text-sm font-medium bg-foreground text-background rounded-sm hover:opacity-90 transition-opacity duration-300"
+            className="inline-flex items-center gap-2 px-8 py-4 text-sm font-medium bg-foreground text-background rounded-sm"
+            whileHover={{ scale: 1.05, boxShadow: "0 8px 30px hsl(224 28% 26% / 0.3)" }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 400, damping: 17 }}
           >
             hello@perceptronix.com <ArrowRight className="w-4 h-4" />
-          </a>
+          </motion.a>
         </motion.div>
       </div>
     </section>

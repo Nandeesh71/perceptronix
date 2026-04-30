@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence, useMotionValueEvent, useScroll } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 const navLinks = ["Services", "About", "Contact"];
@@ -7,16 +7,27 @@ const navLinks = ["Services", "About", "Contact"];
 const Navbar = () => {
   const [hoveredLink, setHoveredLink] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = scrollY.getPrevious() ?? 0;
+    if (latest > 100 && latest > previous) {
+      setHidden(true);
+    } else {
+      setHidden(false);
+    }
+  });
 
   return (
     <motion.nav
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.6 }}
-      className="fixed top-0 left-0 right-0 z-50 bg-foreground/95 backdrop-blur-lg"
+      initial={{ y: -100 }}
+      animate={{ y: hidden ? -100 : 0 }}
+      transition={{ duration: 0.35, ease: "easeInOut" }}
+      className="fixed top-0 left-0 right-0 z-50 bg-foreground/90 backdrop-blur-md border-b border-background/10"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between h-16">
-        <a href="/" className="flex items-center">
+        <a href="/" className="flex items-center logo-glow">
           <img src="/perceptronix-logo.png" alt="Perceptronix" className="h-20 w-auto object-contain" />
         </a>
 
@@ -39,12 +50,15 @@ const Navbar = () => {
               )}
             </a>
           ))}
-          <a
+          <motion.a
             href="#contact"
-            className="ml-4 inline-flex items-center px-6 py-2.5 text-sm font-medium bg-background text-foreground rounded-sm hover:opacity-90 transition-opacity duration-300"
+            className="ml-4 inline-flex items-center px-6 py-2.5 text-sm font-medium bg-background text-foreground rounded-sm"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 400, damping: 17 }}
           >
             Get in touch
-          </a>
+          </motion.a>
         </div>
 
         <button
@@ -61,26 +75,33 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
             className="md:hidden border-t border-background/20 bg-foreground/95 backdrop-blur-lg overflow-hidden"
           >
             <div className="px-6 py-6 flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <a
+              {navLinks.map((link, i) => (
+                <motion.a
                   key={link}
                   href={`#${link.toLowerCase()}`}
                   className="text-base text-background py-2"
                   onClick={() => setMobileOpen(false)}
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.08 }}
                 >
                   {link}
-                </a>
+                </motion.a>
               ))}
-              <a
+              <motion.a
                 href="#contact"
                 className="mt-2 inline-flex items-center justify-center px-6 py-3 text-sm font-medium bg-background text-foreground rounded-sm"
                 onClick={() => setMobileOpen(false)}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: navLinks.length * 0.08 }}
               >
                 Get in touch
-              </a>
+              </motion.a>
             </div>
           </motion.div>
         )}
