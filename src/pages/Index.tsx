@@ -1,11 +1,12 @@
-import { motion } from "framer-motion";
+import { lazy, Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import Services from "@/components/Services";
-import About from "@/components/About";
-import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
+
+const Services = lazy(() => import("@/components/Services"));
+const About = lazy(() => import("@/components/About"));
+const Contact = lazy(() => import("@/components/Contact"));
+const Footer = lazy(() => import("@/components/Footer"));
 
 const Index = () => {
   return (
@@ -13,10 +14,18 @@ const Index = () => {
       <ScrollProgress />
       <Navbar />
       <Hero />
-      <Services />
-      <About />
-      <Contact />
-      <Footer />
+      <Suspense fallback={null}>
+        <Services />
+      </Suspense>
+      <Suspense fallback={null}>
+        <About />
+      </Suspense>
+      <Suspense fallback={null}>
+        <Contact />
+      </Suspense>
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
     </div>
   );
 };
