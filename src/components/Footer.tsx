@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
-const serviceLinks = [
+type FooterLink = { label: string; to: string; external?: boolean };
+
+const serviceLinks: FooterLink[] = [
   { label: "Landing Pages", to: "/services/landing-pages" },
   { label: "E-commerce", to: "/services/e-commerce" },
   { label: "3D Websites", to: "/services/3d-websites" },
@@ -10,14 +12,14 @@ const serviceLinks = [
   { label: "AI Solutions", to: "/services/ai-research" },
 ];
 
-const companyLinks: { label: string; to: string; external?: boolean }[] = [
+const companyLinks: FooterLink[] = [
   { label: "About", to: "/about" },
   { label: "Careers", to: "/careers" },
   { label: "Blog", to: "/blog" },
   { label: "Contact", to: "mailto:TENZOR.NEX@GMAIL.COM", external: true },
 ];
 
-const legalLinks = [
+const legalLinks: FooterLink[] = [
   { label: "Privacy", to: "/privacy" },
   { label: "Terms", to: "/terms" },
   { label: "Security", to: "/security" },
