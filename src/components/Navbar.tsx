@@ -94,8 +94,7 @@ const Navbar = () => {
             </a>
           ))}
           <motion.a
-            href="/#contact"
-            onClick={(e) => handleNavClick(e, "contact")}
+            href="mailto:TENZOR.NEX@GMAIL.COM"
             className="ml-4 inline-flex items-center px-6 py-2.5 text-sm font-medium bg-background text-foreground rounded-sm"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

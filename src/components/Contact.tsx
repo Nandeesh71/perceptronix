@@ -34,13 +34,13 @@ const Contact = () => {
           </motion.p>
           <motion.a
             variants={fadeUp}
-            href="mailto:hello@perceptronix.com"
+            href="mailto:TENZOR.NEX@GMAIL.COM"
             className="inline-flex items-center gap-2 px-8 py-4 text-sm font-medium bg-foreground text-background rounded-sm"
             whileHover={{ scale: 1.05, boxShadow: "0 8px 30px hsl(224 28% 26% / 0.3)" }}
             whileTap={{ scale: 0.95 }}
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
           >
-            hello@perceptronix.com <ArrowRight className="w-4 h-4" />
+            Get in touch <ArrowRight className="w-4 h-4" />
           </motion.a>
         </motion.div>
       </div>
