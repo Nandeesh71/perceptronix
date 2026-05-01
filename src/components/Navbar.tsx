@@ -8,6 +8,18 @@ const navLinks = ["Services", "About", "Contact"];
 const Navbar = () => {
   const [hoveredLink, setHoveredLink] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleNavClick = (e: React.MouseEvent, section: string) => {
+    e.preventDefault();
+    const hash = `#${section.toLowerCase()}`;
+    if (location.pathname === "/") {
+      document.querySelector(hash)?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      navigate("/" + hash);
+    }
+  };
 
   return (
     <motion.nav
