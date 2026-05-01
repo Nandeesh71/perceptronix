@@ -37,8 +37,9 @@ const Navbar = () => {
           {navLinks.map((link) => (
             <a
               key={link}
-              href={`#${link.toLowerCase()}`}
+              href={`/#${link.toLowerCase()}`}
               className="relative text-sm font-medium text-background/60 transition-colors duration-300 hover:text-background"
+              onClick={(e) => handleNavClick(e, link)}
               onMouseEnter={() => setHoveredLink(link)}
               onMouseLeave={() => setHoveredLink(null)}
             >
