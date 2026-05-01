@@ -94,8 +94,7 @@ const Navbar = () => {
             </a>
           ))}
           <motion.a
-            href="/#contact"
-            onClick={(e) => handleNavClick(e, "contact")}
+            href="mailto:TENZOR.NEX@GMAIL.COM"
             className="ml-4 inline-flex items-center px-6 py-2.5 text-sm font-medium bg-background text-foreground rounded-sm"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -163,9 +162,9 @@ const Navbar = () => {
                 </motion.a>
               ))}
               <motion.a
-                href="/#contact"
+                href="mailto:TENZOR.NEX@GMAIL.COM"
                 className="mt-3 inline-flex items-center justify-center px-6 py-3.5 text-sm font-medium bg-background text-foreground rounded-sm active:opacity-80 transition-opacity touch-manipulation"
-                onClick={(e) => handleMobileNavClick(e, "contact")}
+                onClick={() => setMobileOpen(false)}
                 initial={{ opacity: 0, x: -16 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: navLinks.length * 0.06, duration: 0.3 }}

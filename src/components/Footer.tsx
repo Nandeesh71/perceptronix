@@ -1,18 +1,40 @@
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
+type FooterLink = { label: string; to: string; external?: boolean };
+
+const serviceLinks: FooterLink[] = [
+  { label: "Landing Pages", to: "/services/landing-pages" },
+  { label: "E-commerce", to: "/services/e-commerce" },
+  { label: "3D Websites", to: "/services/3d-websites" },
+  { label: "UI/UX Design", to: "/services/ui-ux-design" },
+  { label: "App Development", to: "/services/app-development" },
+  { label: "AI Solutions", to: "/services/ai-research" },
+];
+
+const companyLinks: FooterLink[] = [
+  { label: "About", to: "/about" },
+  { label: "Careers", to: "/careers" },
+  { label: "Blog", to: "/blog" },
+  { label: "Contact", to: "mailto:TENZOR.NEX@GMAIL.COM", external: true },
+];
+
+const legalLinks: FooterLink[] = [
+  { label: "Privacy", to: "/privacy" },
+  { label: "Terms", to: "/terms" },
+  { label: "Security", to: "/security" },
+];
+
 const footerColumns = [
-  {
-    title: "Services",
-    links: ["Landing Pages", "E-commerce", "3D Websites", "UI/UX Design", "App Development", "AI Solutions"],
-  },
-  {
-    title: "Company",
-    links: ["About", "Careers", "Blog", "Contact"],
-  },
-  {
-    title: "Legal",
-    links: ["Privacy", "Terms", "Security"],
-  },
+  { title: "Services", links: serviceLinks },
+  { title: "Company", links: companyLinks },
+  { title: "Legal", links: legalLinks },
+];
+
+const socialLinks = [
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/nandeesh-s" },
+  { label: "X", href: "https://x.com/Nandeesh71" },
+  { label: "GitHub", href: "https://github.com/JEROLD-creator653" },
 ];
 
 const stagger = {
@@ -50,16 +72,28 @@ const Footer = () => {
               </h4>
               <ul className="space-y-3">
                 {col.links.map((link) => (
-                  <li key={link}>
-                    <a
-                      href="#"
-                      className="text-sm transition-colors duration-300 link-hover-underline"
-                      style={{ color: "#b0b8cc" }}
-                      onMouseEnter={(e) => e.currentTarget.style.color = "#ffffff"}
-                      onMouseLeave={(e) => e.currentTarget.style.color = "#b0b8cc"}
-                    >
-                      {link}
-                    </a>
+                  <li key={link.label}>
+                    {link.external ? (
+                      <a
+                        href={link.to}
+                        className="text-sm transition-colors duration-300 link-hover-underline"
+                        style={{ color: "#b0b8cc" }}
+                        onMouseEnter={(e) => (e.currentTarget.style.color = "#ffffff")}
+                        onMouseLeave={(e) => (e.currentTarget.style.color = "#b0b8cc")}
+                      >
+                        {link.label}
+                      </a>
+                    ) : (
+                      <Link
+                        to={link.to}
+                        className="text-sm transition-colors duration-300 link-hover-underline"
+                        style={{ color: "#b0b8cc" }}
+                        onMouseEnter={(e) => (e.currentTarget.style.color = "#ffffff")}
+                        onMouseLeave={(e) => (e.currentTarget.style.color = "#b0b8cc")}
+                      >
+                        {link.label}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -79,16 +113,18 @@ const Footer = () => {
             © 2026 Perceptronix. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
-            {["LinkedIn", "X", "GitHub"].map((s) => (
+            {socialLinks.map((s) => (
               <motion.a
-                key={s}
-                href="#"
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-xs transition-colors duration-300"
                 style={{ color: "#b0b8cc" }}
                 whileHover={{ y: -4, color: "#ffffff" }}
                 transition={{ type: "spring", stiffness: 400, damping: 15 }}
               >
-                {s}
+                {s.label}
               </motion.a>
             ))}
           </div>
