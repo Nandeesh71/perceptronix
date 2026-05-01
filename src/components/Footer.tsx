@@ -10,7 +10,7 @@ const serviceLinks = [
   { label: "AI Solutions", to: "/services/ai-research" },
 ];
 
-const companyLinks = [
+const companyLinks: { label: string; to: string; external?: boolean }[] = [
   { label: "About", to: "/about" },
   { label: "Careers", to: "/careers" },
   { label: "Blog", to: "/blog" },
