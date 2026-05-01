@@ -32,7 +32,7 @@ const footerColumns = [
 ];
 
 const socialLinks = [
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/nandeesh-s" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/nandeesh71/" },
   { label: "X", href: "https://x.com/Nandeesh71" },
   { label: "GitHub", href: "https://github.com/JEROLD-creator653" },
 ];
