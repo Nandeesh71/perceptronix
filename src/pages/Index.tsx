@@ -14,12 +14,20 @@ const Index = () => {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.hash) {
-      setTimeout(() => {
-        document.querySelector(location.hash)?.scrollIntoView({ behavior: "smooth" });
-      }, 100);
+    const hash = location.hash || (location.state as { scrollTo?: string })?.scrollTo;
+    if (hash) {
+      const attempt = (retries: number) => {
+        const el = document.querySelector(hash);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+        } else if (retries > 0) {
+          setTimeout(() => attempt(retries - 1), 150);
+        }
+      };
+      // Small delay to let lazy components mount
+      setTimeout(() => attempt(6), 100);
     }
-  }, [location.hash]);
+  }, [location.hash, location.state]);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
