@@ -54,7 +54,8 @@ const Navbar = () => {
             </a>
           ))}
           <motion.a
-            href="#contact"
+            href="/#contact"
+            onClick={(e) => handleNavClick(e, "contact")}
             className="ml-4 inline-flex items-center px-6 py-2.5 text-sm font-medium bg-background text-foreground rounded-sm"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -85,9 +86,9 @@ const Navbar = () => {
               {navLinks.map((link, i) => (
                 <motion.a
                   key={link}
-                  href={`#${link.toLowerCase()}`}
+                  href={`/#${link.toLowerCase()}`}
                   className="text-base text-background py-2"
-                  onClick={() => setMobileOpen(false)}
+                  onClick={(e) => { handleNavClick(e, link); setMobileOpen(false); }}
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.08 }}
@@ -96,9 +97,9 @@ const Navbar = () => {
                 </motion.a>
               ))}
               <motion.a
-                href="#contact"
+                href="/#contact"
                 className="mt-2 inline-flex items-center justify-center px-6 py-3 text-sm font-medium bg-background text-foreground rounded-sm"
-                onClick={() => setMobileOpen(false)}
+                onClick={(e) => { handleNavClick(e, "contact"); setMobileOpen(false); }}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: navLinks.length * 0.08 }}
